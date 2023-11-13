@@ -1,21 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddrvhm85dajxu"]
+[gd_scene load_steps=3 format=3 uid="uid://ddrvhm85dajxu"]
 
 [ext_resource type="Script" path="res://Node2D.gd" id="1_1vwky"]
+[ext_resource type="PackedScene" uid="uid://cyd3ymc1eupi3" path="res://rad.tscn" id="2_2o2i8"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_1vwky")
 
 [node name="LineEdit" type="LineEdit" parent="."]
+visible = false
 offset_right = 67.0625
 offset_bottom = 31.0
 
 [node name="leSEARCH" type="LineEdit" parent="."]
 offset_left = 1.0
 offset_top = 43.0
-offset_right = 158.0
+offset_right = 307.0
 offset_bottom = 74.0
 
 [node name="Button" type="Button" parent="."]
+visible = false
 offset_left = 81.0
 offset_top = 1.0
 offset_right = 157.0
@@ -23,6 +26,7 @@ offset_bottom = 32.0
 text = "Get Data"
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = 175.0
 offset_top = 5.0
 offset_right = 429.0
@@ -32,23 +36,111 @@ text = "DATA"
 [node name="ItemList" type="ItemList" parent="."]
 offset_left = 3.0
 offset_top = 80.0
-offset_right = 179.0
-offset_bottom = 253.0
+offset_right = 307.0
+offset_bottom = 642.0
 
 [node name="btnSearch" type="Button" parent="."]
-offset_left = 167.0
-offset_top = 41.0
-offset_right = 207.0
-offset_bottom = 72.0
+offset_left = 315.0
+offset_top = 43.0
+offset_right = 355.0
+offset_bottom = 74.0
 text = "SÖK"
 
 [node name="btnAdd" type="Button" parent="."]
-offset_left = 187.0
-offset_top = 221.0
-offset_right = 227.0
-offset_bottom = 252.0
+offset_left = 315.0
+offset_top = 152.0
+offset_right = 383.0
+offset_bottom = 183.0
 text = "Lägg till"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 446.0
+offset_top = 181.0
+offset_right = 1084.0
+offset_bottom = 204.0
+text = "RSK                                                   Artikel                                        Antal        á-pris         Summa"
+
+[node name="leSumma" type="LineEdit" parent="."]
+offset_left = 928.0
+offset_top = 610.0
+offset_right = 1126.0
+offset_bottom = 641.0
+placeholder_text = "SUMMA"
+editable = false
+
+[node name="leAntal" type="LineEdit" parent="."]
+offset_left = 316.0
+offset_top = 116.0
+offset_right = 383.063
+offset_bottom = 147.0
+text = "1"
+
+[node name="Label2" type="Label" parent="leAntal"]
+layout_mode = 0
+offset_top = -27.0
+offset_right = 46.0
+offset_bottom = -4.0
+text = "Antal:"
+
+[node name="btnClear" type="Button" parent="."]
+offset_left = 473.0
+offset_top = 20.0
+offset_right = 594.0
+offset_bottom = 67.0
+text = "RENSA"
+
+[node name="btnExport" type="Button" parent="."]
+offset_left = 842.0
+offset_top = 18.0
+offset_right = 963.0
+offset_bottom = 65.0
+text = "EXPORT"
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 393.0
+offset_top = 207.0
+offset_right = 1138.0
+offset_bottom = 597.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Rad1" parent="Panel/VBoxContainer" instance=ExtResource("2_2o2i8")]
+layout_mode = 2
+
+[node name="Rad2" parent="Panel/VBoxContainer" instance=ExtResource("2_2o2i8")]
+layout_mode = 2
+
+[node name="Rad3" parent="Panel/VBoxContainer" instance=ExtResource("2_2o2i8")]
+layout_mode = 2
+
+[node name="Rad4" parent="Panel/VBoxContainer" instance=ExtResource("2_2o2i8")]
+layout_mode = 2
+
+[node name="Rad5" parent="Panel/VBoxContainer" instance=ExtResource("2_2o2i8")]
+layout_mode = 2
+
+[node name="Rad6" parent="Panel/VBoxContainer" instance=ExtResource("2_2o2i8")]
+layout_mode = 2
+
+[node name="Rad7" parent="Panel/VBoxContainer" instance=ExtResource("2_2o2i8")]
+layout_mode = 2
+
+[node name="Rad8" parent="Panel/VBoxContainer" instance=ExtResource("2_2o2i8")]
+layout_mode = 2
+
+[node name="Rad9" parent="Panel/VBoxContainer" instance=ExtResource("2_2o2i8")]
+layout_mode = 2
+
+[node name="Rad10" parent="Panel/VBoxContainer" instance=ExtResource("2_2o2i8")]
+layout_mode = 2
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="btnSearch" to="." method="_on_btn_search_pressed"]
 [connection signal="pressed" from="btnAdd" to="." method="_on_btn_add_pressed"]
+[connection signal="pressed" from="btnClear" to="." method="_on_btn_clear_pressed"]

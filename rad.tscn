@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyd3ymc1eupi3"]
+
+[ext_resource type="Script" path="res://Rad.gd" id="1_s0c8u"]
+
+[node name="Rad1" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_vertical = 3
+script = ExtResource("1_s0c8u")
+
+[node name="leRSK" type="LineEdit" parent="."]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 125.0
+offset_bottom = 35.0
+editable = false
+
+[node name="leArtikel" type="LineEdit" parent="."]
+layout_mode = 2
+offset_left = 135.0
+offset_top = 4.0
+offset_right = 473.0
+offset_bottom = 35.0
+editable = false
+
+[node name="leAntal" type="LineEdit" parent="."]
+layout_mode = 2
+offset_left = 483.0
+offset_top = 4.0
+offset_right = 559.0
+offset_bottom = 35.0
+
+[node name="leApris" type="LineEdit" parent="."]
+layout_mode = 2
+offset_left = 569.0
+offset_top = 4.0
+offset_right = 643.0
+offset_bottom = 35.0
+editable = false
+
+[node name="leSum" type="LineEdit" parent="."]
+layout_mode = 2
+offset_left = 654.0
+offset_top = 4.0
+offset_right = 742.0
+offset_bottom = 35.0
+editable = false
