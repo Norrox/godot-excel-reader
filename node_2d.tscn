@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddrvhm85dajxu"]
+
+[ext_resource type="Script" path="res://Node2D.gd" id="1_1vwky"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_1vwky")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_right = 67.0625
+offset_bottom = 31.0
+
+[node name="leSEARCH" type="LineEdit" parent="."]
+offset_left = 1.0
+offset_top = 43.0
+offset_right = 158.0
+offset_bottom = 74.0
+
+[node name="Button" type="Button" parent="."]
+offset_left = 81.0
+offset_top = 1.0
+offset_right = 157.0
+offset_bottom = 32.0
+text = "Get Data"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 175.0
+offset_top = 5.0
+offset_right = 429.0
+offset_bottom = 28.0
+text = "DATA"
+
+[node name="ItemList" type="ItemList" parent="."]
+offset_left = 3.0
+offset_top = 80.0
+offset_right = 179.0
+offset_bottom = 253.0
+
+[node name="btnSearch" type="Button" parent="."]
+offset_left = 167.0
+offset_top = 41.0
+offset_right = 207.0
+offset_bottom = 72.0
+text = "SÖK"
+
+[node name="btnAdd" type="Button" parent="."]
+offset_left = 187.0
+offset_top = 221.0
+offset_right = 227.0
+offset_bottom = 252.0
+text = "Lägg till"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="btnSearch" to="." method="_on_btn_search_pressed"]
+[connection signal="pressed" from="btnAdd" to="." method="_on_btn_add_pressed"]
