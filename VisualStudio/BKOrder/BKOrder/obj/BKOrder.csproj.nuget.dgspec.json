@@ -1,26 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Chrkar01\\source\\repos\\BKOrder\\BKOrder\\BKOrder.csproj": {}
+    "C:\\Users\\chris\\Documents\\GitHub\\godot-excel-reader\\VisualStudio\\BKOrder\\BKOrder\\BKOrder.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Chrkar01\\source\\repos\\BKOrder\\BKOrder\\BKOrder.csproj": {
+    "C:\\Users\\chris\\Documents\\GitHub\\godot-excel-reader\\VisualStudio\\BKOrder\\BKOrder\\BKOrder.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Chrkar01\\source\\repos\\BKOrder\\BKOrder\\BKOrder.csproj",
+        "projectUniqueName": "C:\\Users\\chris\\Documents\\GitHub\\godot-excel-reader\\VisualStudio\\BKOrder\\BKOrder\\BKOrder.csproj",
         "projectName": "BKOrder",
-        "projectPath": "C:\\Users\\Chrkar01\\source\\repos\\BKOrder\\BKOrder\\BKOrder.csproj",
-        "packagesPath": "C:\\Users\\Chrkar01\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Chrkar01\\source\\repos\\BKOrder\\BKOrder\\obj\\",
+        "projectPath": "C:\\Users\\chris\\Documents\\GitHub\\godot-excel-reader\\VisualStudio\\BKOrder\\BKOrder\\BKOrder.csproj",
+        "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\chris\\Documents\\GitHub\\godot-excel-reader\\VisualStudio\\BKOrder\\BKOrder\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Users\\Chrkar01\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Chrkar01\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Users\\Chrkar01\\AppData\\Roaming\\NuGet\\config\\Godot.Offline.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -70,7 +64,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

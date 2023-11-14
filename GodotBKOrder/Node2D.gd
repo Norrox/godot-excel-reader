@@ -5,17 +5,22 @@ var workbook
 var sheet
 var table_data
 var summaTotal : float = 0
+var reka_nummer
 
 func _ready():
+	$AnimationPlayer.play("Bk_gunga")
 	excel = ExcelFile.open_file("res://Beställningar 2023.xlsx") # Öppna xlsx-filen
 	workbook = excel.get_workbook() # Hämta arbetsboken
 	sheet = workbook.get_sheet(0) # Hämta det första arket
 	table_data = sheet.get_table_data() # Hämta tabellens data som en array av arrayer
-	#print(JSON.stringify(table_data, "\t")) # Skriv ut data i JSON-format
+	$lbReka.text = readData()
+	$leDate.text = str(Time.get_datetime_dict_from_system().year) +"-"+ str(Time.get_datetime_dict_from_system().month) +"-"+ str(Time.get_datetime_dict_from_system().day)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		_on_btn_search_pressed()
+
+
 
 func _on_button_pressed():
 	table_data = sheet.get_table_data()
@@ -47,7 +52,6 @@ func _on_btn_search_pressed():
 		#for column in column_data:
 		#	print(column_data[column])
 
-
 func _on_btn_add_pressed():
 	if $ItemList.get_selected_items().size() > 0:
 		print($ItemList.get_item_text($ItemList.get_selected_items()[0]))
@@ -72,29 +76,59 @@ func _on_btn_add_pressed():
 								child.get_node("leSum").text = str(sum) + " Kr"
 								$leSumma.text = str(summaTotal) + " kr"
 							break
-						elif child.name == "Rad10" and child.hasData:
+						elif child.name == "Rad20" and child.hasData:
 							print("ALL CHILDREN FILLED WITH DATA")
 							break
-					
-					
 					break
-		
-
-
-
 
 func _on_btn_clear_pressed() -> void:
-	$Panel/VBoxContainer/Rad1.hasData = false
-	$Panel/VBoxContainer/Rad2.hasData = false
-	$Panel/VBoxContainer/Rad3.hasData = false
-	$Panel/VBoxContainer/Rad4.hasData = false
-	$Panel/VBoxContainer/Rad5.hasData = false
-	$Panel/VBoxContainer/Rad6.hasData = false
-	$Panel/VBoxContainer/Rad7.hasData = false
-	$Panel/VBoxContainer/Rad8.hasData = false
-	$Panel/VBoxContainer/Rad9.hasData = false
-	$Panel/VBoxContainer/Rad10.hasData = false
+	for child in $Panel/VBoxContainer.get_children():
+		child.clearData()
+		child.hasData = false
 	
-	$Show.clear()
 	summaTotal = 0
 	$leSumma.text = str(summaTotal) + " kr"
+
+func readData() -> String:
+	# Read the JSON file
+	var f = FileAccess.open("res://data.json", FileAccess.READ)
+	var json = JSON.parse_string(f.get_as_text())
+	f.close()
+	var dat = json["rekanr"]
+	dat += 1
+	var ret = ""
+	if dat < 10:
+		ret = "0000"+str(dat)
+	elif dat < 100:
+		ret = "000"+str(dat)
+	elif dat < 1000:
+		ret = "00"+str(dat)
+	elif dat < 10000:
+		ret = "0"+str(dat)
+	else:
+		ret = str(dat)
+	
+	reka_nummer = dat
+	return ret
+
+func writeData() -> void:
+	# Create a JSON object
+	var json = {
+		"rekanr": reka_nummer
+	}
+	
+	var f = FileAccess.open("res://data.json", FileAccess.WRITE)
+	f.store_string(JSON.stringify(json))
+	#f.open("rekanr.json", File.WRITE)
+	#f.store_string(JSON.print(json))
+	f.close()
+
+
+func _on_btn_export_pressed() -> void:
+	writeData()
+	var popup = Popup.new()
+	add_child(popup)
+	var exportscene = load("res://Export.tscn").instantiate()
+	popup.add_child(exportscene)
+	popup.popup(Rect2i(0,0,1600,1029))
+	#popup.hide()
