@@ -136,6 +136,7 @@ scale = Vector2(0.673077, 0.673077)
 texture = ExtResource("2_frbdi")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 autostart = true
 

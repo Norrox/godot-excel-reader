@@ -105,7 +105,7 @@ offset_right = 836.0
 offset_bottom = 31.0
 text = "Arbetsplats:"
 
-[node name="lArbetsplats2" type="Label" parent="."]
+[node name="lHandlaggare" type="Label" parent="."]
 offset_left = 733.0
 offset_top = 41.0
 offset_right = 836.0

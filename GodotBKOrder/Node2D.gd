@@ -7,6 +7,23 @@ var table_data
 var summaTotal : float = 0
 var reka_nummer
 
+var export_rsk : Array = [""]
+var export_description : Array = [""]
+var export_ammount : Array = [""]
+var export_price : Array = [""]
+var export_sum : Array = [""]
+var export_slag : Array = [""]
+var export_ansvar : Array = [""]
+var export_verks : Array = [""]
+var export_akt : Array = [""]
+var export_objekt : Array = [""]
+var export_projekt : Array = [""]
+var export_motp : Array = [""]
+var export_rekanr : Array = [""]
+var export_workplace : Array = [""]
+var export_handler : Array = [""]
+var export_date : Array = [""]
+
 func _ready():
 	$AnimationPlayer.play("Bk_gunga")
 	excel = ExcelFile.open_file("res://Beställningar 2023.xlsx") # Öppna xlsx-filen
@@ -15,13 +32,30 @@ func _ready():
 	table_data = sheet.get_table_data() # Hämta tabellens data som en array av arrayer
 	$lbReka.text = readData()
 	$leDate.text = str(Time.get_datetime_dict_from_system().year) +"-"+ str(Time.get_datetime_dict_from_system().month) +"-"+ str(Time.get_datetime_dict_from_system().day)
+	initArrays()
 
+func initArrays():
+	export_rsk.resize(20)
+	export_description.resize(20)
+	export_ammount.resize(20)
+	export_price.resize(20)
+	export_sum.resize(20)
+	export_slag.resize(20)
+	export_ansvar.resize(20)
+	export_verks.resize(20)
+	export_akt.resize(20)
+	export_objekt.resize(20)
+	export_projekt.resize(20)
+	export_motp.resize(20)
+	export_rekanr.resize(20)
+	export_workplace.resize(20)
+	export_handler.resize(20)
+	export_date.resize(20)
+	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		_on_btn_search_pressed()
-
-
-
+		
 func _on_button_pressed():
 	table_data = sheet.get_table_data()
 	var artikelnummer = int($LineEdit.text) # Det artikelnummer du vill söka efter
@@ -36,8 +70,6 @@ func _on_button_pressed():
 		else:
 			print("No matched id")
 			#break
-
-
 func _on_btn_search_pressed():
 	$ItemList.clear()
 	table_data = sheet.get_table_data()
@@ -125,10 +157,53 @@ func writeData() -> void:
 
 
 func _on_btn_export_pressed() -> void:
+	collectData()
 	writeData()
 	var popup = Popup.new()
 	add_child(popup)
 	var exportscene = load("res://Export.tscn").instantiate()
+	exportscene.import_rsk = export_rsk
+	exportscene.import_description = export_description
+	exportscene.import_ammount = export_ammount
+	exportscene.import_price = export_price
+	exportscene.import_sum = export_sum
+	exportscene.import_slag = export_slag
+	exportscene.import_ansvar = export_ansvar
+	exportscene.import_verks = export_verks
+	exportscene.import_akt = export_akt
+	exportscene.import_objekt = export_objekt
+	exportscene.import_projekt = export_projekt
+	exportscene.import_motp = export_motp
+	exportscene.import_rekanr = export_rekanr
+	exportscene.import_workplace = export_workplace
+	exportscene.import_handler = export_handler
+	exportscene.import_date = export_date
+	exportscene.updatePicture()
 	popup.add_child(exportscene)
 	popup.popup(Rect2i(0,0,1600,1029))
+	$lbReka.text = readData()
 	#popup.hide()
+
+func collectData():
+	var i = 0
+	for child in $Panel/VBoxContainer.get_children():
+		export_rsk[i] = child.get_node("leRSK").text
+		export_description[i] = child.get_node("leArtikel").text
+		export_ammount[i] = child.get_node("leAntal").text
+		export_price[i] = child.get_node("leApris").text
+		export_sum[i] = child.get_node("leSum").text
+		export_slag[i] = child.get_node("leSlag").text
+		export_ansvar[i] = child.get_node("leAnsvar").text
+		export_verks[i] = child.get_node("leVerks").text
+		export_akt[i] = child.get_node("leAkt").text
+		export_objekt[i] = child.get_node("leObjekt").text
+		export_projekt[i] = child.get_node("leProjekt").text
+		export_motp[i] = child.get_node("leMotp").text
+		export_rekanr[i] = $lbReka.text
+		export_workplace[i] = $leArbersplats.text
+		export_handler[i] = $"leHandläggare".text
+		export_date[i] = $leDate.text
+
+		i+=1
+	pass
+
