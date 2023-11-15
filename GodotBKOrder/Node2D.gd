@@ -23,16 +23,20 @@ var export_rekanr : Array = [""]
 var export_workplace : Array = [""]
 var export_handler : Array = [""]
 var export_date : Array = [""]
+var export_summa
 
 func _ready():
 	$AnimationPlayer.play("Bk_gunga")
-	excel = ExcelFile.open_file("res://Beställningar 2023.xlsx") # Öppna xlsx-filen
+	excel = ExcelFile.open_file("./Beställning material/Beställningar/2023/Beställningar 2023.xlsx") # Öppna xlsx-filen
 	workbook = excel.get_workbook() # Hämta arbetsboken
 	sheet = workbook.get_sheet(0) # Hämta det första arket
 	table_data = sheet.get_table_data() # Hämta tabellens data som en array av arrayer
 	$lbReka.text = readData()
 	$leDate.text = str(Time.get_datetime_dict_from_system().year) +"-"+ str(Time.get_datetime_dict_from_system().month) +"-"+ str(Time.get_datetime_dict_from_system().day)
 	initArrays()
+	
+	
+	
 
 func initArrays():
 	export_rsk.resize(20)
@@ -59,12 +63,10 @@ func _input(event: InputEvent) -> void:
 func _on_button_pressed():
 	table_data = sheet.get_table_data()
 	var artikelnummer = int($LineEdit.text) # Det artikelnummer du vill söka efter
-	print("TEXT IN: " + str(artikelnummer))
 	for row in table_data: # Loopa över varje rad i tabellen
 		var column_data : Dictionary = table_data[row]
 		#print(column_data)
 		if column_data[1] == artikelnummer: # Om första kolumnen i raden matchar artikelnumret
-			print(column_data[2]) # Skriv ut den tredje kolumnen i raden
 			$Label.text = "Artikel: " + str(column_data[2]) + " Pris: " + str(column_data[3]) + "kr"
 			break # Avsluta loopen
 		else:
@@ -80,29 +82,26 @@ func _on_btn_search_pressed():
 			#print(column_data[2]) #Printar allt i kolumn 2
 			if partial_key in column_data[2] : # Om första kolumnen i raden matchar
 				$ItemList.add_item(column_data[2])
-				print(column_data[2]) # Skriv ut den tredje kolumnen i raden
 		#for column in column_data:
 		#	print(column_data[column])
 
 func _on_btn_add_pressed():
 	if $ItemList.get_selected_items().size() > 0:
-		print($ItemList.get_item_text($ItemList.get_selected_items()[0]))
 		table_data = sheet.get_table_data()
 		for row in table_data:
 			var column_data : Dictionary = table_data[row]
 			if column_data.has(2):
 				if column_data[2] == $ItemList.get_item_text($ItemList.get_selected_items()[0]):
 					for child in $Panel/VBoxContainer.get_children():
-						print(child.name + str(child.hasData))
 						if not child.hasData:
 							child.hasData = true
 							if column_data.has(1):
 								child.get_node("leRSK").text = str(column_data[1])
 							if column_data.has(2):
 								child.get_node("leArtikel").text = str(column_data[2])
-								child.get_node("leAntal").text = $leAntal.text + " st/m"
+								child.get_node("leAntal").text = $leAntal.text
 							if column_data.has(6):
-								child.get_node("leApris").text = str(column_data[6]) + " Kr/st"
+								child.get_node("leApris").text = str(column_data[6])
 								var sum : float = float(column_data[6]) * float($leAntal.text)
 								summaTotal += sum
 								child.get_node("leSum").text = str(sum) + " Kr"
@@ -123,8 +122,10 @@ func _on_btn_clear_pressed() -> void:
 
 func readData() -> String:
 	# Read the JSON file
-	var f = FileAccess.open("res://data.json", FileAccess.READ)
+	
+	var f = FileAccess.open("./data.json", FileAccess.READ)
 	var json = JSON.parse_string(f.get_as_text())
+	print("FILE READ JSON=" + str(json))
 	f.close()
 	var dat = json["rekanr"]
 	dat += 1
@@ -141,15 +142,17 @@ func readData() -> String:
 		ret = str(dat)
 	
 	reka_nummer = dat
+	print("NEW NUMB=" + str(reka_nummer))
 	return ret
 
 func writeData() -> void:
 	# Create a JSON object
+	print("SKRIVER JSON=" + str(reka_nummer))
 	var json = {
 		"rekanr": reka_nummer
 	}
 	
-	var f = FileAccess.open("res://data.json", FileAccess.WRITE)
+	var f = FileAccess.open("./data.json", FileAccess.WRITE)
 	f.store_string(JSON.stringify(json))
 	#f.open("rekanr.json", File.WRITE)
 	#f.store_string(JSON.print(json))
@@ -178,6 +181,7 @@ func _on_btn_export_pressed() -> void:
 	exportscene.import_workplace = export_workplace
 	exportscene.import_handler = export_handler
 	exportscene.import_date = export_date
+	exportscene.import_summa = export_summa
 	exportscene.updatePicture()
 	popup.add_child(exportscene)
 	popup.popup(Rect2i(0,0,1600,1029))
@@ -203,7 +207,7 @@ func collectData():
 		export_workplace[i] = $leArbersplats.text
 		export_handler[i] = $"leHandläggare".text
 		export_date[i] = $leDate.text
-
+		export_summa = $leSumma.text
 		i+=1
 	pass
 

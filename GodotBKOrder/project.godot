@@ -10,10 +10,13 @@ config_version=5
 
 [application]
 
-config/name="godot-excel-reader"
+config/name="BKOrder"
 run/main_scene="res://node_2d.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="Data"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/image="res://bodens-kommun.png"
+config/icon="res://bodens-kommun.png"
 
 [display]
 

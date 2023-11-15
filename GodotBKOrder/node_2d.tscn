@@ -63,12 +63,14 @@ offset_left = 842.0
 offset_top = 4.0
 offset_right = 1202.0
 offset_bottom = 35.0
+alignment = 1
 
 [node name="leHandläggare" type="LineEdit" parent="."]
 offset_left = 842.0
 offset_top = 40.0
 offset_right = 1202.0
 offset_bottom = 71.0
+alignment = 1
 
 [node name="leSEARCH" type="LineEdit" parent="."]
 offset_left = 8.0
@@ -97,6 +99,25 @@ offset_top = 8.0
 offset_right = 481.0
 offset_bottom = 31.0
 text = "Datum:"
+
+[node name="lText" type="Label" parent="."]
+offset_left = 149.0
+offset_top = 57.0
+offset_right = 379.0
+offset_bottom = 106.0
+text = "Förrådsrekvisitions hanterare
+SBF - VAA"
+horizontal_alignment = 1
+
+[node name="lText2" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0.247059)
+offset_left = 168.0
+offset_top = 128.0
+offset_right = 398.0
+offset_bottom = 155.0
+scale = Vector2(0.74, 0.74)
+text = "©2023 Christoffer Sundbom"
+horizontal_alignment = 1
 
 [node name="lArbetsplats" type="Label" parent="."]
 offset_left = 743.0

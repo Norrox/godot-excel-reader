@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ic43yi7yk1uo"]
+[gd_scene load_steps=6 format=3 uid="uid://ic43yi7yk1uo"]
 
 [ext_resource type="Script" path="res://Export.gd" id="1_a4vje"]
 [ext_resource type="Theme" uid="uid://bs0korijt6ux6" path="res://lightExportTheme.tres" id="1_dmlsq"]
 [ext_resource type="PackedScene" uid="uid://cyd3ymc1eupi3" path="res://rad.tscn" id="1_s066m"]
 [ext_resource type="Texture2D" uid="uid://d1dgvm2lt6omq" path="res://bodens-kommun.png" id="2_frbdi"]
+[ext_resource type="FontFile" uid="uid://nv78rmiv5cws" path="res://Ubuntu-L.ttf" id="4_5ll8f"]
 
 [node name="Export" type="Node2D"]
 script = ExtResource("1_a4vje")
@@ -130,13 +131,119 @@ theme = null
 layout_mode = 2
 theme = null
 
+[node name="leDate" type="LineEdit" parent="SubViewportContainer/SubViewport/Panel"]
+layout_mode = 0
+offset_left = 351.673
+offset_top = -172.198
+offset_right = 494.673
+offset_bottom = -141.198
+alignment = 1
+
+[node name="leArbersplats" type="LineEdit" parent="SubViewportContainer/SubViewport/Panel"]
+layout_mode = 0
+offset_left = 620.074
+offset_top = -172.198
+offset_right = 980.074
+offset_bottom = -141.198
+alignment = 1
+
+[node name="leHandläggare" type="LineEdit" parent="SubViewportContainer/SubViewport/Panel"]
+layout_mode = 0
+offset_left = 620.074
+offset_top = -128.931
+offset_right = 980.074
+offset_bottom = -97.931
+alignment = 1
+
+[node name="lDatum" type="Label" parent="SubViewportContainer/SubViewport/Panel"]
+layout_mode = 0
+offset_left = 288.304
+offset_top = -168.928
+offset_right = 352.304
+offset_bottom = -145.928
+text = "Datum:"
+
+[node name="lText" type="Label" parent="SubViewportContainer/SubViewport/Panel"]
+layout_mode = 0
+offset_left = 288.304
+offset_top = -283.448
+offset_right = 429.304
+offset_bottom = -260.448
+theme_override_fonts/font = ExtResource("4_5ll8f")
+theme_override_font_sizes/font_size = 47
+text = "Förrådsrekvisition"
+
+[node name="lArbetsplats" type="Label" parent="SubViewportContainer/SubViewport/Panel"]
+layout_mode = 0
+offset_left = 521.158
+offset_top = -168.928
+offset_right = 614.158
+offset_bottom = -145.928
+text = "Arbetsplats:"
+
+[node name="lHandlaggare" type="Label" parent="SubViewportContainer/SubViewport/Panel"]
+layout_mode = 0
+offset_left = 512.398
+offset_top = -126.256
+offset_right = 615.398
+offset_bottom = -103.256
+text = "Handläggare:"
+
+[node name="leUnderskrift" type="LineEdit" parent="SubViewportContainer/SubViewport/Panel"]
+layout_mode = 0
+offset_left = 3.854
+offset_top = 497.894
+offset_right = 363.854
+offset_bottom = 528.894
+alignment = 1
+
+[node name="leTotSumma" type="LineEdit" parent="SubViewportContainer/SubViewport/Panel"]
+layout_mode = 0
+offset_left = 983.149
+offset_top = 497.894
+offset_right = 1174.5
+offset_bottom = 528.894
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+alignment = 1
+
+[node name="lUnderskrift" type="Label" parent="SubViewportContainer/SubViewport/Panel"]
+layout_mode = 0
+offset_left = 3.854
+offset_top = 473.614
+offset_right = 106.854
+offset_bottom = 496.614
+text = "Rekvirentens underskrift:"
+
+[node name="lSumma" type="Label" parent="SubViewportContainer/SubViewport/Panel"]
+layout_mode = 0
+offset_left = 983.149
+offset_top = 474.574
+offset_right = 1180.15
+offset_bottom = 497.574
+text = "Summa:"
+
+[node name="lbReka" type="Label" parent="SubViewportContainer/SubViewport/Panel"]
+layout_mode = 0
+offset_left = 1029.56
+offset_top = -283.582
+offset_right = 1173.56
+offset_bottom = -249.582
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "XXXXXXXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Bodens-kommun" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
 position = Vector2(92, 120)
 scale = Vector2(0.673077, 0.673077)
 texture = ExtResource("2_frbdi")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
 one_shot = true
 autostart = true
 

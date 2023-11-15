@@ -16,6 +16,7 @@ var import_rekanr : Array = [""]
 var import_workplace : Array = [""]
 var import_handler : Array = [""]
 var import_date : Array = [""]
+var import_summa
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,8 +47,13 @@ func _process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	await RenderingServer.frame_post_draw
-	$SubViewportContainer/SubViewport.get_texture().get_image().save_png("res://Förrådsreka_"+str(import_rekanr[0])+".png")
+	$SubViewportContainer/SubViewport.get_texture().get_image().save_png("./Förrådsrekor/Förrådsreka_"+str(import_rekanr[0])+".png")
+	$SubViewportContainer/SubViewport.get_texture().get_image().save_png("./Förrådsreka_"+str(import_rekanr[0])+".png")
 	OS.execute("mspaint", ["/pt", "Förrådsreka_"+str(import_rekanr[0])+".png", ""])
+	
+	await get_tree().create_timer(1).timeout
+	DirAccess.remove_absolute("./Förrådsreka_"+str(import_rekanr[0])+".png")
+	await get_tree().create_timer(1).timeout
 	get_parent().queue_free()
 	
 func updatePicture():
@@ -65,9 +71,9 @@ func updatePicture():
 		child.get_node("leObjekt").text = import_objekt[i]
 		child.get_node("leProjekt").text = import_projekt[i]
 		child.get_node("leMotp").text = import_motp[i]
-		#import_rekanr[i] = $lbReka.text
-		#import_workplace[i] = $leArbersplats.text
-		#import_handler[i] = $"leHandläggare".text
-		#import_date[i] = $leDate.text
-
+		$SubViewportContainer/SubViewport/Panel/lbReka.text = import_rekanr[0]
+		$SubViewportContainer/SubViewport/Panel/leArbersplats.text = import_workplace[0]
+		$"SubViewportContainer/SubViewport/Panel/leHandläggare".text = import_handler[0]
+		$SubViewportContainer/SubViewport/Panel/leDate.text = import_date[0]
+		$SubViewportContainer/SubViewport/Panel/leTotSumma.text = import_summa
 		i+=1
