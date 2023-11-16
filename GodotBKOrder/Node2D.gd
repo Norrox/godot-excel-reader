@@ -27,7 +27,10 @@ var export_summa
 
 func _ready():
 	$AnimationPlayer.play("Bk_gunga")
-	excel = ExcelFile.open_file("./Beställning material/Beställningar/2023/Beställningar 2023.xlsx") # Öppna xlsx-filen
+	if OS.has_feature("Standalone"):
+		excel = ExcelFile.open_file("./Beställning material/Beställningar/2023/Beställningar 2023.xlsx") # Öppna xlsx-filen
+	else:
+		excel = ExcelFile.open_file("res://Beställningar 2023.xlsx")
 	workbook = excel.get_workbook() # Hämta arbetsboken
 	sheet = workbook.get_sheet(0) # Hämta det första arket
 	table_data = sheet.get_table_data() # Hämta tabellens data som en array av arrayer
