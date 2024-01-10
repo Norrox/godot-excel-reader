@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbtkujyayjms1"]
+
+[ext_resource type="Theme" uid="uid://bf82ula2shj86" path="res://standardThemeForArticles.tres" id="1_i4yek"]
+[ext_resource type="Script" path="res://test.gd" id="2_10e30"]
+
+[node name="ItemList2" type="ItemList"]
+offset_right = 876.0
+offset_bottom = 240.0
+theme = ExtResource("1_i4yek")
+item_count = 1
+max_columns = 12
+fixed_column_width = 100
+item_0/text = "test"
+script = ExtResource("2_10e30")
+
+[node name="Window" type="Window" parent="."]
+position = Vector2i(170, 36)
+size = Vector2i(195, 100)
+visible = false
+unresizable = true
+always_on_top = true
+popup_window = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Window/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Ändra text för cell:
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Window/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "null
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Window/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+alignment = 1
+
+[node name="Button" type="Button" parent="Window/VBoxContainer"]
+layout_mode = 2
+text = "OK
+"
+
+[node name="MenuBar" type="MenuBar" parent="."]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 60.0
+offset_right = 68.0
+offset_bottom = 100.0
+
+[node name="SpinBox" type="SpinBox" parent="."]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 84.0
+offset_right = 150.435
+offset_bottom = 103.0
+
+[connection signal="item_activated" from="." to="." method="_on_item_activated"]
+[connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
+[connection signal="pressed" from="Window/VBoxContainer/Button" to="." method="_on_button_pressed"]

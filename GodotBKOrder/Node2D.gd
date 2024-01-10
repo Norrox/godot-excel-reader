@@ -25,8 +25,10 @@ var export_handler : Array = [""]
 var export_date : Array = [""]
 var export_summa
 
+@onready var popup_confirmation : Window = $WindowConfirmation
+
 func _ready():
-	$AnimationPlayer.play("Bk_gunga")
+	#$AnimationPlayer.play("Bk_gunga")
 	if OS.has_feature("Standalone"):
 		excel = ExcelFile.open_file("./Beställning material/Beställningar/2023/Beställningar 2023.xlsx") # Öppna xlsx-filen
 	else:
@@ -111,6 +113,7 @@ func _on_btn_add_pressed():
 								child.get_node("leApris").text = str(column_data[6])
 								var sum : float = float(column_data[6]) * float($leAntal.text)
 								summaTotal += sum
+								child.sum = sum
 								child.get_node("leSum").text = str(sum) + " Kr"
 								$leSumma.text = str(summaTotal) + " kr"
 							break
@@ -120,12 +123,7 @@ func _on_btn_add_pressed():
 					break
 
 func _on_btn_clear_pressed() -> void:
-	for child in $Panel/VBoxContainer.get_children():
-		child.clearData()
-		child.hasData = false
-	
-	summaTotal = 0
-	$leSumma.text = str(summaTotal) + " kr"
+	popup_confirmation.popup()
 
 func readData() -> String:
 	# Read the JSON file
@@ -216,5 +214,28 @@ func collectData():
 		export_date[i] = $leDate.text
 		export_summa = $leSumma.text
 		i+=1
-	pass
 
+
+
+func _on_button_2_pressed() -> void:
+	for child in $Panel/VBoxContainer.get_children():
+		if child.hasData:
+			if child.id == 2:
+				summaTotal -= child.sum
+				child.clearData()
+				child.hasData = false
+	
+	$leSumma.text = str(summaTotal) + " kr"
+
+
+func _on_window_confirmation_close_requested() -> void:
+	popup_confirmation.hide()
+
+func _on_btn_yes_clear_pressed() -> void:
+	for child in $Panel/VBoxContainer.get_children():
+		child.clearData()
+		child.hasData = false
+	
+	summaTotal = 0
+	$leSumma.text = str(summaTotal) + " kr"
+	popup_confirmation.hide()

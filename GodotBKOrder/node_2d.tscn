@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddrvhm85dajxu"]
+[gd_scene load_steps=8 format=3 uid="uid://ddrvhm85dajxu"]
 
 [ext_resource type="Script" path="res://Node2D.gd" id="1_1vwky"]
 [ext_resource type="PackedScene" uid="uid://cyd3ymc1eupi3" path="res://rad.tscn" id="2_2o2i8"]
-[ext_resource type="Texture2D" uid="uid://d1dgvm2lt6omq" path="res://bodens-kommun.png" id="3_fq470"]
+[ext_resource type="Texture2D" uid="uid://dr26r2rwskhp4" path="res://Logo_CF_263x263.png" id="3_jkhmx"]
+[ext_resource type="PackedScene" uid="uid://dtagpmtip3dv1" path="res://login.tscn" id="4_5q5ei"]
 
 [sub_resource type="Animation" id="Animation_ojskl"]
 resource_name = "Bk_gunga"
@@ -11,7 +12,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Bodens-kommun:rotation")
+tracks/0/path = NodePath("cfd:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -26,7 +27,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Bodens-kommun:rotation")
+tracks/0/path = NodePath("cfd:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -43,6 +44,7 @@ _data = {
 }
 
 [node name="Node2D" type="Node2D"]
+visible = false
 script = ExtResource("1_1vwky")
 
 [node name="Panel2" type="Panel" parent="."]
@@ -101,22 +103,23 @@ offset_bottom = 31.0
 text = "Datum:"
 
 [node name="lText" type="Label" parent="."]
-offset_left = 149.0
+offset_left = 131.0
 offset_top = 57.0
-offset_right = 379.0
+offset_right = 361.0
 offset_bottom = 106.0
 text = "Förrådsrekvisitions hanterare
-SBF - VAA"
+"
 horizontal_alignment = 1
 
 [node name="lText2" type="Label" parent="."]
 self_modulate = Color(1, 1, 1, 0.247059)
-offset_left = 168.0
-offset_top = 128.0
-offset_right = 398.0
-offset_bottom = 155.0
+offset_left = 162.0
+offset_top = 88.0
+offset_right = 392.0
+offset_bottom = 137.0
 scale = Vector2(0.74, 0.74)
-text = "©2023 Christoffer Sundbom"
+text = "©2023 Christoffer Sundbom
+CF Digital AB"
 horizontal_alignment = 1
 
 [node name="lArbetsplats" type="Label" parent="."]
@@ -174,10 +177,10 @@ offset_bottom = 95.0
 text = "RSK                                   Beskrivning                                    Antal      á-pris       Summa        Slag        Ansvar      Verks          Akt         Objekt     Projekt     Motp"
 
 [node name="leSumma" type="LineEdit" parent="."]
-offset_left = 208.0
-offset_top = 752.0
-offset_right = 406.0
-offset_bottom = 791.0
+offset_left = 156.0
+offset_top = 754.0
+offset_right = 352.0
+offset_bottom = 793.0
 theme_override_colors/font_uneditable_color = Color(0.847059, 0.788235, 0, 1)
 theme_override_font_sizes/font_size = 22
 text = "12123123"
@@ -204,8 +207,8 @@ modulate = Color(1, 0, 0, 1)
 offset_left = 4.0
 offset_top = 694.0
 offset_right = 125.0
-offset_bottom = 741.0
-text = "RENSA"
+offset_bottom = 725.0
+text = "RENSA ALLT"
 
 [node name="btnExport" type="Button" parent="."]
 modulate = Color(0, 1, 0, 1)
@@ -291,18 +294,99 @@ layout_mode = 2
 [node name="Rad20" parent="Panel/VBoxContainer" instance=ExtResource("2_2o2i8")]
 layout_mode = 2
 
-[node name="Bodens-kommun" type="Sprite2D" parent="."]
-position = Vector2(77, 80)
-scale = Vector2(0.403846, 0.403846)
-texture = ExtResource("3_fq470")
+[node name="cfd" type="Sprite2D" parent="."]
+position = Vector2(74.9231, 76.9231)
+scale = Vector2(0.52331, 0.52331)
+texture = ExtResource("3_jkhmx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_iw8rl")
 }
 
+[node name="Button2" type="Button" parent="."]
+offset_left = 364.0
+offset_top = 132.0
+offset_right = 382.0
+offset_bottom = 163.0
+text = "X"
+
+[node name="Button3" type="Button" parent="."]
+offset_left = 364.0
+offset_top = 96.0
+offset_right = 382.0
+offset_bottom = 127.0
+text = "X"
+
+[node name="Button4" type="Button" parent="."]
+offset_left = 364.0
+offset_top = 168.0
+offset_right = 382.0
+offset_bottom = 199.0
+text = "X"
+
+[node name="WindowConfirmation" type="Window" parent="."]
+title = "! RENSAR ALLT !"
+initial_position = 2
+size = Vector2i(300, 95)
+visible = false
+unresizable = true
+always_on_top = true
+popup_window = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowConfirmation"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="WindowConfirmation/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.22
+text = "Är du säker att du vill rensa allt?
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowConfirmation/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WindowConfirmation/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="btnNo" type="Button" parent="WindowConfirmation/VBoxContainer/MarginContainer/HBoxContainer"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Nej
+"
+
+[node name="btnYes" type="Button" parent="WindowConfirmation/VBoxContainer/MarginContainer/HBoxContainer"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ja"
+
+[node name="WindowLogin" parent="." instance=ExtResource("4_5q5ei")]
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="btnSearch" to="." method="_on_btn_search_pressed"]
 [connection signal="pressed" from="btnAdd" to="." method="_on_btn_add_pressed"]
 [connection signal="pressed" from="btnClear" to="." method="_on_btn_clear_pressed"]
 [connection signal="pressed" from="btnExport" to="." method="_on_btn_export_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button4" to="." method="_on_button_2_pressed"]
+[connection signal="close_requested" from="WindowConfirmation" to="." method="_on_window_confirmation_close_requested"]
+[connection signal="pressed" from="WindowConfirmation/VBoxContainer/MarginContainer/HBoxContainer/btnNo" to="." method="_on_window_confirmation_close_requested"]
+[connection signal="pressed" from="WindowConfirmation/VBoxContainer/MarginContainer/HBoxContainer/btnYes" to="." method="_on_btn_yes_clear_pressed"]
