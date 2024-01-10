@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BKOrder")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d255cdbbc327403ee0b18af8975addf17627908c")]
 [assembly: System.Reflection.AssemblyProductAttribute("BKOrder")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BKOrder")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

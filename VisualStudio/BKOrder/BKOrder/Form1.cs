@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace BKOrder
 {
@@ -16,7 +17,7 @@ namespace BKOrder
         private List<(string, string, string)> excelData = new List<(string, string, string)>();
         private Dictionary<string, string> listBoxMapping = new Dictionary<string, string>();
         private bool[] isFull = new bool[5];
-        private int maxRows = 5;
+        private int maxRows = 15;
         string excelPath = "C:\\Users\\Chrkar01\\Documents\\GitHub\\godot-excel-reader\\Beställningar 2023.xlsx";
         public Form1()
         {
@@ -77,6 +78,7 @@ namespace BKOrder
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+
             /*foreach ((string column1, string column2, string column6) in excelData) {
                 Debug.WriteLine($"Column1: {column1}, Column2: {column2}, Column6: {column6}");
             }*/
@@ -90,6 +92,12 @@ namespace BKOrder
                 if (matchingRow != default)
                 {
                     Debug.WriteLine($"Column1: {matchingRow.Item1}, Column2: {matchingRow.Item2}, Column6: {matchingRow.Item3}");
+                    ListViewItem item = new ListViewItem(matchingRow.Item1);
+                    item.SubItems.Add(matchingRow.Item2);
+                    listView1.Items.Add(item);
+
+                    return;
+                    /*
                     for (int i = 0; i < maxRows; i++)
                     {
                         if (!isFull[i])
@@ -132,7 +140,7 @@ namespace BKOrder
                         {
                             Debug.WriteLine("ALL SLOTS ARE FILLED");
                         }
-                    }
+                    } */
                 }
             }
         }
@@ -157,6 +165,14 @@ namespace BKOrder
 
         }
 
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if(listView1.Items.Count > 0) {
+                try { listView1.Items.Remove(listView1.SelectedItems[0]); }
+                catch { MessageBox.Show("Ingen rad vald."); }
+
+            }
+        }
     }
 }
 

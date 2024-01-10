@@ -78,12 +78,16 @@ func _on_button_pressed():
 func _on_btn_search_pressed():
 	$ItemList.clear()
 	table_data = sheet.get_table_data()
-	var partial_key = $leSEARCH.text
+	var partial_key : String = $leSEARCH.text
+	var partial_key_storbokstav : String = partial_key.capitalize()
+	var partial_key_litenbokstav : String = partial_key.capitalize().to_lower()
 	for row in table_data:
 		var column_data : Dictionary = table_data[row]
 		if column_data.has(2):
 			#print(column_data[2]) #Printar allt i kolumn 2
-			if partial_key in column_data[2] : # Om första kolumnen i raden matchar
+			if partial_key_storbokstav in column_data[2] : # Om första kolumnen i raden matchar med stor bokstav
+				$ItemList.add_item(column_data[2])
+			elif partial_key_litenbokstav in column_data[2] : # Om första kolumnen i raden matchar med liten bokstav
 				$ItemList.add_item(column_data[2])
 		#for column in column_data:
 		#	print(column_data[column])
