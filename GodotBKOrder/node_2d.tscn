@@ -44,7 +44,6 @@ _data = {
 }
 
 [node name="Node2D" type="Node2D"]
-visible = false
 script = ExtResource("1_1vwky")
 
 [node name="Panel2" type="Panel" parent="."]
@@ -118,8 +117,7 @@ offset_top = 88.0
 offset_right = 392.0
 offset_bottom = 137.0
 scale = Vector2(0.74, 0.74)
-text = "©2023 Christoffer Sundbom
-CF Digital AB"
+text = "©2023 CF Digital AB"
 horizontal_alignment = 1
 
 [node name="lArbetsplats" type="Label" parent="."]
@@ -378,6 +376,16 @@ size_flags_horizontal = 3
 text = "Ja"
 
 [node name="WindowLogin" parent="." instance=ExtResource("4_5q5ei")]
+visible = false
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 2
+size = Vector2i(528, 159)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+use_native_dialog = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="btnSearch" to="." method="_on_btn_search_pressed"]
@@ -390,3 +398,4 @@ text = "Ja"
 [connection signal="close_requested" from="WindowConfirmation" to="." method="_on_window_confirmation_close_requested"]
 [connection signal="pressed" from="WindowConfirmation/VBoxContainer/MarginContainer/HBoxContainer/btnNo" to="." method="_on_window_confirmation_close_requested"]
 [connection signal="pressed" from="WindowConfirmation/VBoxContainer/MarginContainer/HBoxContainer/btnYes" to="." method="_on_btn_yes_clear_pressed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

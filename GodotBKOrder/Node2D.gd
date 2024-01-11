@@ -39,9 +39,7 @@ func _ready():
 	$lbReka.text = readData()
 	$leDate.text = str(Time.get_datetime_dict_from_system().year) +"-"+ str(Time.get_datetime_dict_from_system().month) +"-"+ str(Time.get_datetime_dict_from_system().day)
 	initArrays()
-	
-	
-	
+
 
 func initArrays():
 	export_rsk.resize(20)
@@ -64,6 +62,8 @@ func initArrays():
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		_on_btn_search_pressed()
+	if event.is_action_pressed("open_file"):
+		$FileDialog.popup()
 		
 func _on_button_pressed():
 	table_data = sheet.get_table_data()
@@ -239,3 +239,14 @@ func _on_btn_yes_clear_pressed() -> void:
 	summaTotal = 0
 	$leSumma.text = str(summaTotal) + " kr"
 	popup_confirmation.hide()
+
+
+func _on_file_dialog_file_selected(path):
+	var excel_path = path
+	excel = ExcelFile.open_file(path)
+	workbook = excel.get_workbook() # Hämta arbetsboken
+	sheet = workbook.get_sheet(0) # Hämta det första arket
+	table_data = sheet.get_table_data() # Hämta tabellens data som en array av arrayer
+	$lbReka.text = readData()
+	$leDate.text = str(Time.get_datetime_dict_from_system().year) +"-"+ str(Time.get_datetime_dict_from_system().month) +"-"+ str(Time.get_datetime_dict_from_system().day)
+	initArrays()
