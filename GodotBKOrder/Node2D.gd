@@ -215,8 +215,6 @@ func collectData():
 		export_summa = $leSumma.text
 		i+=1
 
-
-
 func _on_button_2_pressed() -> void:
 	for child in $Panel/VBoxContainer.get_children():
 		if child.hasData:
