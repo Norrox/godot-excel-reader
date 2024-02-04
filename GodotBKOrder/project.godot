@@ -16,8 +16,8 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="Data"
 config/features=PackedStringArray("4.3")
 boot_splash/bg_color=Color(1, 1, 1, 1)
-boot_splash/image="res://Logo_CF_Digital_AB_1080p.png"
-config/icon="res://Logo_CF_263x263.png"
+boot_splash/image="res://cfd-LOGO-transparent2048x2048.png"
+config/icon="res://cfd-LOGO-transparent300x300.png"
 
 [display]
 

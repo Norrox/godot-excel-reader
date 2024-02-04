@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Node2D.gd" id="1_1vwky"]
 [ext_resource type="PackedScene" uid="uid://cyd3ymc1eupi3" path="res://rad.tscn" id="2_2o2i8"]
-[ext_resource type="Texture2D" uid="uid://dr26r2rwskhp4" path="res://Logo_CF_263x263.png" id="3_jkhmx"]
+[ext_resource type="Texture2D" uid="uid://b5curm75uidng" path="res://cfd-LOGO-transparent300x300.png" id="3_b0c1e"]
 [ext_resource type="PackedScene" uid="uid://dtagpmtip3dv1" path="res://login.tscn" id="4_5q5ei"]
 
 [sub_resource type="Animation" id="Animation_ojskl"]
@@ -203,9 +203,9 @@ text = "Antal:"
 [node name="btnClear" type="Button" parent="."]
 modulate = Color(1, 0, 0, 1)
 offset_left = 4.0
-offset_top = 694.0
+offset_top = 671.0
 offset_right = 125.0
-offset_bottom = 725.0
+offset_bottom = 702.0
 text = "RENSA ALLT"
 
 [node name="btnExport" type="Button" parent="."]
@@ -214,7 +214,16 @@ offset_left = 4.0
 offset_top = 747.0
 offset_right = 125.0
 offset_bottom = 794.0
-text = "SKAPA
+text = "SKAPA REKA
+"
+
+[node name="btnExport2" type="Button" parent="."]
+modulate = Color(0, 1, 0, 1)
+offset_left = 4.0
+offset_top = 709.0
+offset_right = 125.0
+offset_bottom = 743.0
+text = "SKAPA OFFERT
 "
 
 [node name="Panel" type="Panel" parent="."]
@@ -293,9 +302,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="cfd" type="Sprite2D" parent="."]
-position = Vector2(74.9231, 76.9231)
+position = Vector2(65.9231, 84.9231)
 scale = Vector2(0.52331, 0.52331)
-texture = ExtResource("3_jkhmx")
+texture = ExtResource("3_b0c1e")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -392,6 +401,7 @@ use_native_dialog = true
 [connection signal="pressed" from="btnAdd" to="." method="_on_btn_add_pressed"]
 [connection signal="pressed" from="btnClear" to="." method="_on_btn_clear_pressed"]
 [connection signal="pressed" from="btnExport" to="." method="_on_btn_export_pressed"]
+[connection signal="pressed" from="btnExport2" to="." method="_on_btn_export_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Button3" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Button4" to="." method="_on_button_2_pressed"]
