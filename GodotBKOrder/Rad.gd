@@ -25,3 +25,12 @@ func clearData():
 	$leProjekt.text = ""
 	$leMotp.text = ""
 	sum = 0.0
+
+
+func _on_btn_empty_row_pressed():
+		if hasData:
+			var p = get_parent().get_parent().get_parent()
+			p.summaTotal -= sum
+			clearData()
+			hasData = false
+			p.get_node("leSumma").text = str(p.summaTotal) + " kr"
