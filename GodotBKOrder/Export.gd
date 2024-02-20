@@ -47,13 +47,21 @@ func _process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	await RenderingServer.frame_post_draw
-	$SubViewportContainer/SubViewport.get_texture().get_image().save_png("./Förrådsrekor/Förrådsreka_"+str(import_rekanr[0])+".png")
-	$SubViewportContainer/SubViewport.get_texture().get_image().save_png("./Förrådsreka_"+str(import_rekanr[0])+".png")
-	OS.execute("mspaint", ["/pt", "Förrådsreka_"+str(import_rekanr[0])+".png", ""])
-	
-	await get_tree().create_timer(1).timeout
-	DirAccess.remove_absolute("./Förrådsreka_"+str(import_rekanr[0])+".png")
-	await get_tree().create_timer(1).timeout
+	if(import_rekanr[0] == "OFFERT"):
+		$SubViewportContainer/SubViewport.get_texture().get_image().save_png("./Offerter/Offert-"+str(import_date[0])+".png")
+		$SubViewportContainer/SubViewport.get_texture().get_image().save_png("./Offert-"+str(import_date[0])+".png")
+		OS.execute("mspaint", ["/pt", "Offert-"+str(import_date[0])+".png", ""])
+		await get_tree().create_timer(1).timeout
+		DirAccess.remove_absolute("./Offert-"+str(import_date[0])+".png")
+		await get_tree().create_timer(1).timeout
+	else:
+		$SubViewportContainer/SubViewport.get_texture().get_image().save_png("./Förrådsrekor/Förrådsreka-"+str(import_rekanr[0])+".png")
+		$SubViewportContainer/SubViewport.get_texture().get_image().save_png("./Förrådsreka-"+str(import_rekanr[0])+".png")
+		OS.execute("mspaint", ["/pt", "Förrådsreka-"+str(import_rekanr[0])+".png", ""])
+		await get_tree().create_timer(1).timeout
+		DirAccess.remove_absolute("./Förrådsreka-"+str(import_rekanr[0])+".png")
+		await get_tree().create_timer(1).timeout
+		
 	get_parent().queue_free()
 	
 func updatePicture():
@@ -71,7 +79,7 @@ func updatePicture():
 		child.get_node("leObjekt").text = import_objekt[i]
 		child.get_node("leProjekt").text = import_projekt[i]
 		child.get_node("leMotp").text = import_motp[i]
-		$SubViewportContainer/SubViewport/Panel/lbReka.text = import_rekanr[0]
+		$SubViewportContainer/SubViewport/Panel/lbReka.text = str(import_rekanr[0])
 		$SubViewportContainer/SubViewport/Panel/leArbersplats.text = import_workplace[0]
 		$"SubViewportContainer/SubViewport/Panel/leHandläggare".text = import_handler[0]
 		$SubViewportContainer/SubViewport/Panel/leDate.text = import_date[0]

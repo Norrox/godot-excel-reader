@@ -29,8 +29,9 @@ var export_summa
 
 func _ready():
 	#$AnimationPlayer.play("Bk_gunga")
-	if OS.has_feature("Standalone"):
+	if !OS.has_feature("editor"):
 		excel = ExcelFile.open_file("./Beställning material/Beställningar/2023/Beställningar 2023.xlsx") # Öppna xlsx-filen
+		print("Opend xlsl standalone")
 	else:
 		excel = ExcelFile.open_file("res://Beställningar 2023.xlsx")
 	workbook = excel.get_workbook() # Hämta arbetsboken
@@ -193,6 +194,34 @@ func _on_btn_export_pressed() -> void:
 	$lbReka.text = readData()
 	#popup.hide()
 
+
+func _on_btn_export_offert_pressed():
+	collectData()
+	var popup = Popup.new()
+	add_child(popup)
+	var exportscene = load("res://Export.tscn").instantiate()
+	exportscene.import_rsk = export_rsk
+	exportscene.import_description = export_description
+	exportscene.import_ammount = export_ammount
+	exportscene.import_price = export_price
+	exportscene.import_sum = export_sum
+	exportscene.import_slag = export_slag
+	exportscene.import_ansvar = export_ansvar
+	exportscene.import_verks = export_verks
+	exportscene.import_akt = export_akt
+	exportscene.import_objekt = export_objekt
+	exportscene.import_projekt = export_projekt
+	exportscene.import_motp = export_motp
+	exportscene.import_rekanr = ["OFFERT"]
+	exportscene.import_workplace = export_workplace
+	exportscene.import_handler = export_handler
+	exportscene.import_date = export_date
+	exportscene.import_summa = export_summa
+	exportscene.updatePicture()
+	popup.add_child(exportscene)
+	popup.popup(Rect2i(0,0,1600,1029))
+	#$lbReka.text = "OFFERT"
+
 func collectData():
 	var i = 0
 	for child in $Panel/VBoxContainer.get_children():
@@ -248,3 +277,5 @@ func _on_file_dialog_file_selected(path):
 	$lbReka.text = readData()
 	$leDate.text = str(Time.get_datetime_dict_from_system().year) +"-"+ str(Time.get_datetime_dict_from_system().month) +"-"+ str(Time.get_datetime_dict_from_system().day)
 	initArrays()
+
+

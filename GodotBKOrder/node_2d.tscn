@@ -181,7 +181,6 @@ offset_right = 362.0
 offset_bottom = 793.0
 theme_override_colors/font_uneditable_color = Color(0.847059, 0.788235, 0, 1)
 theme_override_font_sizes/font_size = 22
-text = "12123123"
 placeholder_text = "SUMMA"
 alignment = 1
 editable = false
@@ -217,7 +216,7 @@ offset_bottom = 794.0
 text = "SKAPA REKA
 "
 
-[node name="btnExport2" type="Button" parent="."]
+[node name="btnExportOffert" type="Button" parent="."]
 modulate = Color(0, 1, 0, 1)
 offset_left = 9.0
 offset_top = 709.0
@@ -380,7 +379,7 @@ use_native_dialog = true
 [connection signal="pressed" from="btnAdd" to="." method="_on_btn_add_pressed"]
 [connection signal="pressed" from="btnClear" to="." method="_on_btn_clear_pressed"]
 [connection signal="pressed" from="btnExport" to="." method="_on_btn_export_pressed"]
-[connection signal="pressed" from="btnExport2" to="." method="_on_btn_export_pressed"]
+[connection signal="pressed" from="btnExportOffert" to="." method="_on_btn_export_offert_pressed"]
 [connection signal="close_requested" from="WindowConfirmation" to="." method="_on_window_confirmation_close_requested"]
 [connection signal="pressed" from="WindowConfirmation/VBoxContainer/MarginContainer/HBoxContainer/btnNo" to="." method="_on_window_confirmation_close_requested"]
 [connection signal="pressed" from="WindowConfirmation/VBoxContainer/MarginContainer/HBoxContainer/btnYes" to="." method="_on_btn_yes_clear_pressed"]
